@@ -2,9 +2,10 @@
 
 ## ConveyManager
 
-Below are screenshots that demonstrate the different features, along with references to the related code files.
+Welcome to the Conveyancing Manager, a demonstration of a modern web application built with Laravel 11 and Inertia.js + VueJS 3. This project showcases several core features and best practices discussed in prior sessions.
 
-This is a Laravel 11, Intertia + VueJS 3 installation with a few fundementals that were discussed previously.
+Below, you'll find screenshots highlighting various functionalities of the application, along with links to the relevant code files.
+
 
 ### Installation with docker
 
@@ -26,7 +27,7 @@ vendor/bin/sail up -d
 
 ## Jobs 
 
-There are a few jobs, listeners and notifications within this demonstration.
+This application includes several jobs, listeners, and notifications to handle background processing efficiently. Below is a snapshot of the job queue in action.
 
 ![Job Queue](screenshots/07-jobs-queue.png)
 
@@ -35,8 +36,6 @@ There are a few jobs, listeners and notifications within this demonstration.
 - `app/Jobs/PerformAMLChecks.php` 
 - `app/Jobs/ProcessAMLResults.php`
 - `app/Notifications/AMLChecksCompleteNotification.php`
-
-
 
 ## Add Clients
 
