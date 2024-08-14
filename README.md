@@ -26,8 +26,6 @@ vendor/bin/sail migrate
 vendor/bin/sail npm install
 
 vendor/bin/sail npm run dev
-
-
 ```
 
 ### Tests
