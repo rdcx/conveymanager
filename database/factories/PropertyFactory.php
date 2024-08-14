@@ -17,10 +17,10 @@ class PropertyFactory extends Factory
     public function definition(): array
     {
         return [
-            'address' => $this->faker->streetAddress,
-            'city' => $this->faker->city,
-            'postal_code' => $this->faker->postcode,
-            'country' => $this->faker->country,
+            'address' => fake()->streetAddress,
+            'city' => fake()->city,
+            'postal_code' => fake()->postcode,
+            'country' => fake()->country,
         ];
     }
 }

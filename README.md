@@ -4,6 +4,8 @@
 
 Welcome to the Conveyancing Manager, a demonstration of a modern web application built with Laravel 11 and Inertia.js + VueJS 3. This project showcases several core features and best practices discussed in prior sessions.
 
+
+
 Below, you'll find screenshots highlighting various functionalities of the application, along with links to the relevant code files.
 
 
@@ -22,10 +24,22 @@ docker run --rm \
 vendor/bin/sail up -d
 ```
 
-**Related Code Files:**
-- `routes/web.php`
+### Tests
 
-## Jobs 
+There are a few Pest tests included in the example.
+
+- `tests/Feature/ProcessAMLChecksTest.php`
+
+### Notable areas of development
+
+- `routes/web.php`
+- `app/Policies`
+- `app/Jobs`
+- `app/Listeners`
+- `app/Http/Controllers`
+- `app/Http/Requests`
+
+## Jobs, Listeners & Notifications
 
 This application includes several jobs, listeners, and notifications to handle background processing efficiently. Below is a snapshot of the job queue in action.
 
