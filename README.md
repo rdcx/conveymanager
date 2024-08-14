@@ -2,7 +2,7 @@
 
 ## Conveymanager
 
-This a demonstration of a modern web application built with Laravel 11 and Inertia.js + VueJS 3. This project showcases several core features and best practices discussed in prior sessions.
+This a demonstration of a modern web application built with Laravel 11 and Inertia.js + VueJS 3. This project showcases several core features and best practices. Though it does not show examples of DDD, service & repository, event sourcing etc. If you want to see a more complex system that I've built with those, checkout this search engine I've built from scratch github.com/crawlquery/crawlquery.
 
 Below, you'll find screenshots highlighting various functionalities of the application, along with links to the relevant code files.
 
