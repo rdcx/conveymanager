@@ -1,10 +1,8 @@
 ![Welcome Page](screenshots/01-welcome.png)
 
-## ConveyManager
+## Conveymanager
 
-Welcome to the Conveyancing Manager, a demonstration of a modern web application built with Laravel 11 and Inertia.js + VueJS 3. This project showcases several core features and best practices discussed in prior sessions.
-
-
+This a demonstration of a modern web application built with Laravel 11 and Inertia.js + VueJS 3. This project showcases several core features and best practices discussed in prior sessions.
 
 Below, you'll find screenshots highlighting various functionalities of the application, along with links to the relevant code files.
 
