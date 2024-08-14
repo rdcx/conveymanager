@@ -6,6 +6,19 @@ Below are screenshots that demonstrate the different features, along with refere
 
 This is a Laravel 11, Intertia + VueJS 3 installation with a few fundementals that were discussed previously.
 
+## Installation (Docker required)
+
+`git clone git@github.com:rdcx/conveymanager.git`
+
+```
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php83-composer:latest \
+    composer install --ignore-platform-reqs
+```
+
 **Related Code Files:**
 - `routes/web.php`
 
