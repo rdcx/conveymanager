@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 class ConveyancingCase extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, Searchable, HasUuids;
 
     /**
      * The attributes that are mass assignable.
@@ -30,10 +31,6 @@ class ConveyancingCase extends Model
 
         static::creating(function ($conveyancingCase) {
             $conveyancingCase->ref = strtoupper(Str::random(8));
-        });
-
-        static::deleting(function ($conveyancingCase) {
-            $conveyancingCase->clients()->detach();
         });
     }
 

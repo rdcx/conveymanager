@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\ConveyancingCase;
+use App\Models\Task;
 use App\Notifications\AMLChecksCompleteNotification;
 use Illuminate\Bus\Batchable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,13 +13,12 @@ class ProcessAMLResults implements ShouldQueue
 {
     use Queueable, Batchable;
 
-   /**
+    /**
      * Create a new job instance.
      */
     public function __construct(
         public ConveyancingCase $conveyancingCase,
-    )
-    {
+    ) {
         //
     }
 
@@ -30,13 +30,16 @@ class ProcessAMLResults implements ShouldQueue
         $this->conveyancingCase->conveyancer->notify(new AMLChecksCompleteNotification($this->conveyancingCase));
         // Check if any clients have a failed AML check result
         $amlSuccessCount = $this->conveyancingCase->amlResults()
-                ->where('success', true)
-                ->count();
+            ->where('success', true)
+            ->count();
         $totalCaseClients = $this->conveyancingCase->clients()->count();
 
-        // If there are no failed AML checks, create a new task for the conveyancer
-        // to follow up with the client 
+        // Check if all clients have passed the AML checks
         if ($amlSuccessCount === $totalCaseClients) {
+            // Close the AML checks task
+            $this->conveyancingCase->tasks()->where('name', Task::PERFORM_AML_CHECKS)->update([
+                'is_completed' => true,
+            ]);
             $this->conveyancingCase->tasks()->create([
                 'name' => 'Follow up with the client',
                 'due_date' => now()->addDays(1),
@@ -51,5 +54,5 @@ class ProcessAMLResults implements ShouldQueue
             'name' => 'AML checks failed, follow up with the client',
             'due_date' => now()->addDays(1),
         ]);
-    } 
+    }
 }

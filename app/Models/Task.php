@@ -10,6 +10,8 @@ class Task extends Model
 {
     use HasFactory, HasUuids;
 
+    public const PERFORM_AML_CHECKS = 'Perform AML checks';
+
     protected $fillable = [
         'name',
         'is_completed',

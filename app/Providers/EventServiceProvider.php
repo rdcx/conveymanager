@@ -9,6 +9,7 @@ class EventServiceProvider
      */
     protected $listen = [
         'App\Events\ConveyancingCaseCreated' => [
+            'App\Listeners\CreateInitialCaseTasks',
             'App\Listeners\DispatchAMLChecks',
         ],
     ];

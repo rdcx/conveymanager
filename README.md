@@ -20,6 +20,14 @@ docker run --rm \
     composer install --ignore-platform-reqs;
 
 vendor/bin/sail up -d
+
+vendor/bin/sail migrate
+
+vendor/bin/sail npm install
+
+vendor/bin/sail npm run dev
+
+
 ```
 
 ### Tests
@@ -37,6 +45,14 @@ There are a few Pest tests included in the example.
 - `app/Http/Controllers`
 - `app/Http/Requests`
 
+## Search of Properties and Cases via Scout
+
+This application features robust search functionality using Laravel Scout, enabling efficient searches for properties and cases. Below is a snapshot of the search interface in action.
+
+NOTE: To enable search, you need to import the models using artisan scout:import on install.
+
+![Scout Search](screenshots/08-scout-search.png)
+
 ## Jobs, Listeners & Notifications
 
 This application includes several jobs, listeners, and notifications to handle background processing efficiently. Below is a snapshot of the job queue in action.
@@ -45,6 +61,7 @@ This application includes several jobs, listeners, and notifications to handle b
 
 **Related Code Files:**
 - `app/Listeners/DispatchAMLChecks.php`
+- `app/Listeners/CreateInitialCaseTasks.php`
 - `app/Jobs/PerformAMLChecks.php` 
 - `app/Jobs/ProcessAMLResults.php`
 - `app/Notifications/AMLChecksCompleteNotification.php`
