@@ -9,7 +9,7 @@ This is a Laravel 11, Intertia + VueJS 3 installation with a few fundementals th
 ## Installation (Docker required)
 
 ```
-git clone git@github.com:rdcx/conveymanager.git
+git clone git@github.com:rdcx/conveymanager.git; cd conveymanager/
 
 docker run --rm \
     -u "$(id -u):$(id -g)" \
