@@ -1,6 +1,15 @@
 # Example Work Overview
 
-This document showcases some of the example work I've built. Below are screenshots that demonstrate the different features, along with references to the related code files.
+Below are screenshots that demonstrate the different features, along with references to the related code files.
+
+## Conveyancing Manager
+
+This is a Laravel 11, Intertia + VueJS 3 installation with a few fundementals that were discussed previously.
+
+![Welcome Page](screenshots/01-welcome.png)
+
+**Related Code Files:**
+- `routes/web.php`
 
 ## Jobs 
 
@@ -14,14 +23,7 @@ There are a few jobs, listeners and notifications within this demonstration.
 - `app/Jobs/ProcessAMLResults.php`
 - `app/Notifications/AMLChecksCompleteNotification.php`
 
-## Conveyancing Manager
 
-This is a very basic system with a few fundementals that were discussed previously.
-
-![Welcome Page](screenshots/01-welcome.png)
-
-**Related Code Files:**
-- `routes/web.php`
 
 ## Add Clients
 
