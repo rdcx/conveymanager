@@ -9,8 +9,8 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('case_id')->constrained('conveyancing_cases')->onDelete('cascade');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('case_id')->constrained('conveyancing_cases')->onDelete('cascade');
             $table->decimal('amount', 10, 2);
             $table->date('transaction_date');
             $table->enum('transaction_type', ['payment', 'deposit', 'refund']);

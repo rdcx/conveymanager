@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Contracts\AMLChecker;
+use App\Models\ConveyancingCase;
+use App\Models\Property;
+use App\Policies\ConveyancingCasePolicy;
+use App\Policies\PropertyPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(AMLChecker::class, function () {
+            return new \App\Services\AMLCheckService();
+        });
     }
 
     /**
@@ -19,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::policy(Property::class, PropertyPolicy::class);
+        Gate::policy(ConveyancingCase::class, ConveyancingCasePolicy::class);
     }
 }

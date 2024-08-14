@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class ConveyancingCase extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     /**
      * The attributes that are mass assignable.
@@ -17,11 +19,23 @@ class ConveyancingCase extends Model
     protected $fillable = [
         'property_id',
         'conveyancer_id',
-        'client_id',
         'status',
         'start_date',
         'end_date',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($conveyancingCase) {
+            $conveyancingCase->ref = strtoupper(Str::random(8));
+        });
+
+        static::deleting(function ($conveyancingCase) {
+            $conveyancingCase->clients()->detach();
+        });
+    }
 
     /**
      * The property associated with this conveyancing case.
@@ -42,8 +56,29 @@ class ConveyancingCase extends Model
     /**
      * The client involved in this conveyancing case.
      */
-    public function client()
+    public function clients()
     {
-        return $this->belongsTo(User::class, 'client_id');
+        return $this->belongsToMany(Client::class, 'cases_clients');
+    }
+
+    /**
+     * The lead client associated with this conveyancing case.
+     */
+    public function leadClient()
+    {
+        return $this->clients()->wherePivot('is_lead', true)->first();
+    }
+
+    public function amlResults()
+    {
+        return $this->hasMany(AMLResult::class);
+    }
+
+    /**
+     * Get the tasks associated with the conveyancing case.
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

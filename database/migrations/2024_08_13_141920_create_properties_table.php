@@ -9,12 +9,11 @@ class CreatePropertiesTable extends Migration
     public function up()
     {
         Schema::create('properties', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('address');
             $table->string('city');
             $table->string('postal_code');
             $table->string('country');
-            $table->foreignId('owner_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

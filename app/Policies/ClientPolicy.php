@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Policies;
+
+use App\Models\User;
+use Illuminate\Auth\Access\Response;
+
+class ClientPolicy 
+{
+
+    /**
+     * Perform pre-authorization checks.
+     */
+    public function before(User $user): ?bool
+    {
+        if ($user->role === 'admin') {
+            return true;
+        }
+
+        return null;
+    }
+
+    /**
+     * Determine whether the user can view any models.
+     */
+    public function index(User $user): Response
+    {
+        return  $user->role === 'conveyancer'
+            ? Response::allow()
+            : Response::deny('You do not have permission to view clientgs.'); 
+    }
+
+
+    /**
+     * Determine whether the user can create models.
+     */
+    public function create(User $user): Response 
+    {
+        if ($user->role === 'conveyancer') {
+            return Response::allow();
+        }
+
+        return Response::deny('You do not have permission to create clients.');
+    }
+
+    /**
+     * Determine whether the user can store the model.
+     */
+    public function store(User $user): Response
+    {
+        if ($user->role === 'conveyancer') {
+            return Response::allow();
+        }
+
+        return Response::deny('You do not have permission to store clients.');
+    }
+}

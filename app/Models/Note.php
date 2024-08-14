@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class Document extends Model
+class Note extends Model
 {
     use HasFactory, HasUuids;
 
@@ -17,14 +17,12 @@ class Document extends Model
      */
     protected $fillable = [
         'case_id',
-        'file_path',
-        'file_name',
-        'uploaded_by',
-        'document_type',
+        'user_id',
+        'note_text',
     ];
 
     /**
-     * The conveyancing case that this document is associated with.
+     * The conveyancing case that this note is associated with.
      */
     public function conveyancingCase()
     {
@@ -32,10 +30,10 @@ class Document extends Model
     }
 
     /**
-     * The user who uploaded this document.
+     * The user who created this note.
      */
-    public function uploader()
+    public function user()
     {
-        return $this->belongsTo(User::class, 'uploaded_by');
+        return $this->belongsTo(User::class);
     }
 }

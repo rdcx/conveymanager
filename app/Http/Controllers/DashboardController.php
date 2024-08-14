@@ -13,15 +13,11 @@ class DashboardController extends Controller
     /**
      * Show the dashboard with statistics.
      */
-    public function index()
+    public function index() : \Inertia\Response
     {
-        // Assuming the authenticated user should see their own stats
-        $user = Auth::user();
-
-        // Example statistics
-        $totalProperties = Property::where('owner_id', $user->id)->count();
-        $totalConveyancingCases = ConveyancingCase::where('conveyancer_id', $user->id)->count();
-        $totalUsers = User::count(); // Example: Show total users in the system (for admin)
+        $totalProperties = Property::count();
+        $totalConveyancingCases = ConveyancingCase::count();
+        $totalUsers = User::count();
 
         return Inertia::render('Dashboard', [
             'totalProperties' => $totalProperties,

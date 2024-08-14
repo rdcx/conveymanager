@@ -9,11 +9,14 @@ class CreateDocumentsTable extends Migration
     public function up()
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('case_id')->constrained('conveyancing_cases')->onDelete('cascade');
+            $table->uuid('id')->primary();
+            
+            // Polymorphic relationship
+            $table->uuidMorphs('documentable');
+
             $table->string('file_path');
             $table->string('file_name');
-            $table->foreignId('uploaded_by')->constrained('users')->onDelete('cascade');
+            $table->foreignUuid('uploaded_by')->constrained('users')->onDelete('cascade');
             $table->enum('document_type', ['contract', 'title_deed', 'survey', 'other']);
             $table->timestamps();
         });

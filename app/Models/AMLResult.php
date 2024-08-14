@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class Note extends Model
+class AMLResult extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
+
+    protected $table = 'aml_results';
 
     /**
      * The attributes that are mass assignable.
@@ -15,9 +18,9 @@ class Note extends Model
      * @var array<string>
      */
     protected $fillable = [
-        'case_id',
-        'user_id',
-        'note_text',
+        'success',
+        'conveyancing_case_id',
+        'client_id',
     ];
 
     /**
@@ -25,14 +28,14 @@ class Note extends Model
      */
     public function conveyancingCase()
     {
-        return $this->belongsTo(ConveyancingCase::class, 'case_id');
+        return $this->belongsTo(ConveyancingCase::class);
     }
 
     /**
-     * The user who created this note.
+     * The client who who this note is associated with.
      */
-    public function user()
+    public function client()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Client::class);
     }
 }

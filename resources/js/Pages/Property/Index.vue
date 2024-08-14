@@ -13,7 +13,7 @@ defineProps({
         <template #header>
             <div class="flex">
                 <div class="font-semibold text-xl text-gray-800 leading-tight">
-                    My Properties
+                    Properties
                 </div>
                 <div class="grow"></div>
                 <div class="flex justify-end">
@@ -35,7 +35,7 @@ defineProps({
                         <div v-else class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             <div v-for="property in properties" :key="property.id"
                                 class="bg-white rounded-lg p-6 border border-gray-200">
-                                <h3 class="text-lg font-semibold text-gray-900">{{ property.address }}</h3>
+                                <Link :href="route('properties.show', property.id)"><h3 class="text-lg font-semibold text-blue-500">{{ property.address }}</h3></Link>
                                 <p class="text-sm text-gray-600">{{ property.city }}, {{ property.state }} {{
                                     property.postal_code }}
                                 </p>

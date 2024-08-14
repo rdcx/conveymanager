@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePropertyRequest;
 use App\Models\Property;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 
 class PropertyController extends Controller
@@ -12,9 +13,11 @@ class PropertyController extends Controller
     /**
      * Show the form for creating a new property.
      */
-    public function create()
+    public function create() : \Inertia\Response
     {
-        return Inertia::render('Properties/Create');
+        Gate::authorize('create', Property::class);
+
+        return Inertia::render('Property/Create');
     }
 
     /**
@@ -22,12 +25,13 @@ class PropertyController extends Controller
      */
     public function store(StorePropertyRequest $request): \Illuminate\Http\RedirectResponse
     {
+        Gate::authorize('store', Property::class);
+
         Property::create([
             'address' => $request->address,
             'city' => $request->city,
             'postal_code' => $request->postal_code,
             'country' => $request->country,
-            'owner_id' => Auth::id(),
         ]);
 
         return redirect()->route('properties.index')->with('success', 'Property created successfully.');
@@ -36,12 +40,27 @@ class PropertyController extends Controller
     /**
      * Display a listing of the properties.
      */
-    public function index()
+    public function index(): \Inertia\Response
     {
-        $properties = Property::where('owner_id', Auth::id())->get();
+        Gate::authorize('index', Property::class);
 
-        return Inertia::render('Properties/Index', [
+        $properties = Property::get();
+
+        return Inertia::render('Property/Index', [
             'properties' => $properties,
+        ]);
+    }
+    
+    /**
+     * Display the specified property.
+     */
+    public function show(Property $property) : \Inertia\Response
+    {
+        Gate::authorize('view', $property);
+        $property->load(['conveyancingCases', 'conveyancingCases.clients', 'conveyancingCases.conveyancer']);
+        return Inertia::render('Property/Show', [
+            'property' => $property,
+            'conveyancingCases' => $property->conveyancingCases,
         ]);
     }
 }

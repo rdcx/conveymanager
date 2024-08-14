@@ -29,7 +29,7 @@ defineProps({
 
                         <!-- Total Conveyancing Cases -->
                         <div class="bg-green-500 text-white p-4 rounded-lg shadow-md">
-                            <h3 class="text-lg font-semibold">Total Conveyancing Cases</h3>
+                            <h3 class="text-lg font-semibold">Total Cases</h3>
                             <p class="text-3xl mt-2">{{ totalConveyancingCases }}</p>
                         </div>
 
