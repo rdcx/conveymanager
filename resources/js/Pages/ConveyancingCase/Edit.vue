@@ -24,7 +24,7 @@ const toggleTaskCompletion = (task) => {
     <AppLayout title="Edit Case">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Case: {{ conveyancingCase.property.address }}
+                Case: {{ conveyancingCase.ref }}
             </h2>
         </template>
 
