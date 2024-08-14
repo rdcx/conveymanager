@@ -1,12 +1,10 @@
-# Example Work Overview
-
-Below are screenshots that demonstrate the different features, along with references to the related code files.
+![Welcome Page](screenshots/01-welcome.png)
 
 ## Conveyancing Manager
 
-This is a Laravel 11, Intertia + VueJS 3 installation with a few fundementals that were discussed previously.
+Below are screenshots that demonstrate the different features, along with references to the related code files.
 
-![Welcome Page](screenshots/01-welcome.png)
+This is a Laravel 11, Intertia + VueJS 3 installation with a few fundementals that were discussed previously.
 
 **Related Code Files:**
 - `routes/web.php`
