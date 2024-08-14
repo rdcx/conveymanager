@@ -1,12 +1,12 @@
 ![Welcome Page](screenshots/01-welcome.png)
 
-## Conveyancing Manager
+## ConveyManager
 
 Below are screenshots that demonstrate the different features, along with references to the related code files.
 
 This is a Laravel 11, Intertia + VueJS 3 installation with a few fundementals that were discussed previously.
 
-## Installation (Docker required)
+### Installation with docker
 
 ```
 git clone git@github.com:rdcx/conveymanager.git; cd conveymanager/
